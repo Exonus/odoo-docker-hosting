@@ -70,8 +70,10 @@ services:
     volumes:
       - odoo-db-data:/var/lib/postgresql/data
       - odoo-db-pgdata:/var/lib/postgresql/data/pgdata
-      
-  volumes:
-    odoo-web-data:
-    odoo-db-data:
-    odoo-db-pgdata:
+
+# end services
+volumes:
+  odoo-web-data:
+  odoo-db-data:
+  odoo-db-pgdata:
+  
