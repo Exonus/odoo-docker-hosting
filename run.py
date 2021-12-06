@@ -54,9 +54,11 @@ def prune_volumes(all=False):
 def launch_odoo_in_browser():
     webbrowser.open_new_tab("localhost:8069/web?debug=1")
 
-def create_db(container, db_user="bn_odoo", new_user="bitnami_odoo"):
-    os.system(f"docker exec -i {Container} createdb -U {db_user} {new_user}")
-
+def create_db(container, db_user="bn_odoo", new_db="bitnami_odoo"):
+    print(f"creation of database {new_db} starting")
+    os.system(f"docker exec -i {Container} createdb -U {db_user} {new_db}")
+    print(f"creation of database {new_db} done")
+    
 def main():
     """Launch docker-compose services
     """
@@ -90,6 +92,10 @@ def main():
         os.system("docker-compose up -d")
 
         # create database
+        create_db(
+            container=ODOO_SERVICE,
+        )
+
         
 
     except Exception as error:
