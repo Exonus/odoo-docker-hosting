@@ -16,6 +16,7 @@ import time
 # services names
 ODOO_SERVICE = "odoo_15"
 POSTGRES_SERVICE = "postgres_14"
+DB_DUMP_FILE = "/root/src/database-backup/bitnami_odoo.pgsql"
 
 # current work directory path
 cwd_path = os.getcwd()
@@ -59,6 +60,14 @@ def create_db(container, db_user="bn_odoo", new_db="bitnami_odoo"):
     os.system(f"docker exec -i {container} createdb -U {db_user} {new_db}")
     print(f"creation of database {new_db} done")
 
+def create_superuser(username="postgres"):
+    os.system(f"docker exec -i postgres_14 createuser -U bn_odoo postgres --superuser")
+
+def restore_database(db_user="bn_odoo", target_db="bitnami_odoo", target_file=DB_DUMP_FILE):
+    print(f"[DB RESTORE PROCESS > {target_db} START")
+    os.system(f"docker exec -i postgres_14 psql -U {db_user} {target_db} < {target_file}")
+    print(f"[DB RESTORE PROCESS > '{target_db}' END")
+
 def main():
     """Launch docker-compose services
     """
@@ -96,6 +105,11 @@ def main():
             container=ODOO_SERVICE,
         )
 
+        # create user postgres if not exists
+        create_superuser()
+
+        # restore database
+        restore_database()
         
 
     except Exception as error:
