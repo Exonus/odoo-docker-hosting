@@ -36,7 +36,8 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
+      - /root/src/community-addons:/mnt/extra-addons
+      # - ./addons:/mnt/extra-addons
       # - ./enterprise:/mnt/enterprise
 
     #Username and password of the Host DB
