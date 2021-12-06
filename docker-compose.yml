@@ -62,8 +62,8 @@ services:
     #make sure to use the same which were given above.
     environment:
       - POSTGRES_DB=postgres 
-      - POSTGRES_USER=bn_odoo
-      - POSTGRES_PASSWORD=bn_odoo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
       - PGDATA=/var/lib/postgresql/data/pgdata
     
     #Add this volume to map the Postgres data. It may be lost
