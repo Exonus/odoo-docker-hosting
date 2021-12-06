@@ -43,8 +43,8 @@ services:
 
     environment:
       - HOST=db
-      - USER=ExonusRoot
-      - PASSWORD=Exonus@Tech@2021
+      - USER=exonus
+      - PASSWORD=exonus
 
     # All of the information needed to start up a Postgresql
     # container.
