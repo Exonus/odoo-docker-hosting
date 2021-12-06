@@ -1,0 +1,78 @@
+version: '3.1'
+services:
+  # Information needed set up an odoo web
+  # application container.
+  web:
+    image: odoo:15.0
+    container_name: odoo_15
+    depends_on:
+      - db
+
+    # Port Mapping
+    #We need to map the port on the host machine(left side) to the
+    #Port inside the container on the right. By default Odoo 
+    #Runs on port 8069 and inside the container, it is running on 8069.
+    #Locally we are going to access it via localhost:9000
+
+    ports:
+      - "9000:8069"
+      - "8080:8089"
+
+    restart: always
+    command: '-u all -d rd-demo'
+
+    # Data Volumes
+    # --------
+    #
+    # This defines files that we are sharing from the host machine
+    # into the container.
+    #
+    #Here we are using to map the extra add ons or enterprise addons
+    # as well as the configuration file. Also, we need to map the data 
+    #directory where Odoo will storesome attachments etc.
+
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+      # - ./enterprise:/mnt/enterprise
+
+    #Username and password of the Host DB
+    # Make sure to give the same credentials
+    #inside the postgres service
+
+    environment:
+      - HOST=db
+      - USER=ExonusRoot
+      - PASSWORD=Exonus@Tech@2021
+
+    # All of the information needed to start up a Postgresql
+    # container.
+  
+  db:
+    image: postgres:14
+    container_name: postgres_14
+    ports:
+      - "5432:5432"
+    
+    restart: always
+
+    #make sure to use the same which were given above.
+    environment:
+      - POSTGRES_DB=postgres 
+      - POSTGRES_USER=ExonusRoot
+      - POSTGRES_PASSWORD=Exonus@Tech@2021
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    
+    #Add this volume to map the Postgres data. It may be lost
+    #if we execute docker-compose down where all the data
+    #in the layered file system will be lost
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+      - odoo-db-pgdata:/var/lib/postgresql/data/pgdata
+
+    
+  volumes:
+    - odoo-web-data:
+    - odoo-db-data:
+    - odoo-db-pgdata:
