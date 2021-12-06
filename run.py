@@ -101,15 +101,15 @@ def main():
         os.system("docker-compose up -d")
 
         # create database
-        create_db(
-            container=ODOO_SERVICE,
-        )
+        # create_db(
+        #     container=ODOO_SERVICE,
+        # )
 
         # create user postgres if not exists
-        create_superuser()
+        # create_superuser()
 
         # restore database
-        restore_database()
+        # restore_database()
         
 
     except Exception as error:
@@ -121,7 +121,7 @@ def main():
 
         # open in browser
         print("Launch in browser")
-        time.sleep(5)
+        #time.sleep(5)
         # launch_odoo_in_browser()
 
 
