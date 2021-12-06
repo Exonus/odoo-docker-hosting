@@ -15,8 +15,8 @@ services:
     #Locally we are going to access it via localhost:9000
 
     ports:
-      - "9000:8069"
-      - "8089:8080"
+      # - "9000:8069"
+      - "8080:8069"
 
     restart: always
     command: '-u all -d rd-demo'
