@@ -184,7 +184,7 @@ def main():
         # open in browser
         print("Launch in browser")
         time.sleep(5)
-        launch_odoo_in_browser()
+        # launch_odoo_in_browser()
 
 
 if __name__ == "__main__":
