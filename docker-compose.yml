@@ -60,8 +60,8 @@ services:
     #make sure to use the same which were given above.
     environment:
       - POSTGRES_DB=postgres 
-      - POSTGRES_USER=ExonusRoot
-      - POSTGRES_PASSWORD=Exonus@Tech@2021
+      - POSTGRES_USER=exonus
+      - POSTGRES_PASSWORD=exonus
       - PGDATA=/var/lib/postgresql/data/pgdata
     
     #Add this volume to map the Postgres data. It may be lost
