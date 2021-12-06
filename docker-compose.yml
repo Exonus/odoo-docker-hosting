@@ -16,7 +16,7 @@ services:
 
     ports:
       - "9000:8069"
-      - "8080:8089"
+      - "8089:8080"
 
     restart: always
     command: '-u all -d rd-demo'
