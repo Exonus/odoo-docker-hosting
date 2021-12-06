@@ -20,8 +20,8 @@ services:
       - "80:8069"
 
     restart: always
-    command: '-u all -d rd-demo'
-    # command: '-u all -d bitnami_odoo'
+    #command: '-u all -d rd-demo'
+    command: '-u all -d bitnami_odoo'
 
     # Data Volumes
     # --------
