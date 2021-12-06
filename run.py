@@ -5,9 +5,7 @@ import sys
 import webbrowser
 import time
 
-# services names
-ODOO_SERVICE = "odoo_15"
-POSTGRES_SERVICE = "postgres_14"
+
 
 # current work directory path
 cwd_path = os.getcwd()
