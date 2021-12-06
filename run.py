@@ -30,8 +30,8 @@ def format_container_names():
     containers = []
 
     # add containers
-    containers.append(f"{cwd_name}{ODOO_SERVICE}")  # odoo container
-    containers.append(f"{cwd_name}{POSTGRES_SERVICE}")   # postgresql container
+    containers.append(f"{cwd_name}_{ODOO_SERVICE}")  # odoo container
+    containers.append(f"{cwd_name}_{POSTGRES_SERVICE}")   # postgresql container
 
     return containers
 
