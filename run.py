@@ -55,7 +55,7 @@ def launch_odoo_in_browser():
     webbrowser.open_new_tab("localhost:8069/web?debug=1")
 
 def create_db(container, db_user="bn_odoo", new_user="bitnami_odoo"):
-    os.system(f"docker exec -i {Container} createdb -U {db_user} {}")
+    os.system(f"docker exec -i {Container} createdb -U {db_user} {new_user}")
 
 def main():
     """Launch docker-compose services
