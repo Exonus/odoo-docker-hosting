@@ -45,8 +45,8 @@ services:
 
     environment:
       - HOST=db
-      - USER=exonus
-      - PASSWORD=exonus
+      - USER=bn_odoo
+      - PASSWORD=bn_odoo
 
     # All of the information needed to start up a Postgresql
     # container.
@@ -62,8 +62,8 @@ services:
     #make sure to use the same which were given above.
     environment:
       - POSTGRES_DB=postgres 
-      - POSTGRES_USER=exonus
-      - POSTGRES_PASSWORD=exonus
+      - POSTGRES_USER=bn_odoo
+      - POSTGRES_PASSWORD=bn_odoo
       - PGDATA=/var/lib/postgresql/data/pgdata
     
     #Add this volume to map the Postgres data. It may be lost
