@@ -20,8 +20,13 @@ services:
       - "80:8069"
 
     restart: always
+    command: '-u all -d exonus-odoo'
+
+    #command: '-u all -d exonus09-12-2021-1'
+
+    #command: '-u all -d exonus09-12-2021'
     #command: '-u all -d rd-demo'
-    command: '-u all -d bitnami_odoo'
+    #command: '-u all -d bitnami_odoo'
 
     # Data Volumes
     # --------
