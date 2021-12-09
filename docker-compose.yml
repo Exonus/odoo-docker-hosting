@@ -50,6 +50,16 @@ services:
       - HOST=db
       - USER=bn_odoo
       - PASSWORD=bn_odoo
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1024M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+
 
     # All of the information needed to start up a Postgresql
     # container.
@@ -75,6 +85,16 @@ services:
     volumes:
       - odoo-db-data:/var/lib/postgresql/data
       - odoo-db-pgdata:/var/lib/postgresql/data/pgdata
+    
+    # deployement 
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1024M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
 
 # end services
 volumes:
