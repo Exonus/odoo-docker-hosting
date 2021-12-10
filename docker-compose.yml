@@ -3,7 +3,7 @@ services:
   # Information needed set up an odoo web
   # application container.
   web:
-    image: odoo:15.0
+    image: odoo
     container_name: odoo_15
     depends_on:
       - db
@@ -15,15 +15,16 @@ services:
     #Locally we are going to access it via localhost:9000
 
     ports:
-      - "9000:8069"
+      # - "9000:8069"
+      - "8069:8069"
       # - "8080:8069"
-      - "80:8069"
+      # - "80:8069"
 
     restart: always
     
-    command: '-u all -d exonus'
+    # command: '-u all -d exonus'
     #command: '-u all -d rd-demo'
-    #command: '-u all -d bitnami_odoo'
+    command: '-u all -d bitnami_odoo'
 
     # Data Volumes
     # --------
@@ -38,7 +39,7 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      - /root/src/community-addons:/mnt/extra-addons
+      - /home/nathanbangwa/Documents/dev/devops/community-addons:/mnt/extra-addons
       # - ./addons:/mnt/extra-addons
       # - ./enterprise:/mnt/enterprise
 
@@ -65,7 +66,7 @@ services:
     # container.
   
   db:
-    image: postgres:14
+    image: postgres
     container_name: postgres_14
     ports:
       - "5432:5432"
