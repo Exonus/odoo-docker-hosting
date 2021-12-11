@@ -19,7 +19,7 @@ services:
     volumes:
       # - ./templates:/etc/nginx/templates # template
       - ./nginx/conf:/etc/nginx/conf.d
-      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/conf:/etc/nginx/ssl # content ./certbot/conf/live/exonus.tech
     
   odoo:
     image: odoo:15.0
