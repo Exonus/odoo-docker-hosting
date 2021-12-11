@@ -76,7 +76,7 @@ services:
 /src/odoo-docker-hosting-$ docker-compose up -d
 ```
 
-> ### 7. Voir le resultat
+> ### 8. Voir le resultat
 > > * En local [localhost](http://localhost:80)
 > > * En ligne [www.exonus.tech](http://www.exonus.tech/)
 
