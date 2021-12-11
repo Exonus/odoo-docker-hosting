@@ -54,18 +54,18 @@
 > > * En ligne [www.exonus.tech](http://www.exonus.tech/)
 
 
-## 2. Restore Odoo Data into container
-> ### 1. Create user postgres 
+## 2. Restorer une databse Odoo dans un conteneur
+> ### 1. Creer un user ```postgres``` 
 ```bash
 -$ docker exec -i postgres_14 createuser -U bn_odoo postgres --superuser
 ```
 
-> ### 2. Create database bitnami_odoo
+> ### 2. Creer database ```bitnami_odoo```
 ```bash
 -$ docker exec -i postgres_14 createdb -U bn_odoo bitnami_odoo
 ```
 
-> ### 3. Restore database ```bitnami_odoo```
+> ### 3. Restorer la database ```bitnami_odoo```
 ```bash
 -$ docker exec -i postgres_14 psql -U bn_odoo bitnami_odoo < ../database-backup/bitnami_odoo.pgsql
 ```
