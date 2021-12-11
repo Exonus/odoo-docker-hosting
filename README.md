@@ -77,7 +77,7 @@ services:
 ```
 
 > ### 7. Voir le resultat
-> > * En local [localhost](localhost:80)
+> > * En local [localhost](http://localhost:80)
 > > * En ligne [www.exonus.tech](http://www.exonus.tech/)
 
 
