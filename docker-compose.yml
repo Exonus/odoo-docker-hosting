@@ -2,9 +2,28 @@ version: '3.1'
 services:
   # Information needed set up an odoo web
   # application container.
-  web:
+  web-server:
+    image: nginx
+    container_name: nginx
+    depends_on:
+      - odoo
+    ports:
+      # - "8080:80" # Localhost
+      - "80:80" # Production
+      - 443:443
+
+    # environment:
+    #   - NGINX_HOST= localhost # foobar.com
+    #   - NGINX_PORT=80
+    
+    volumes:
+      # - ./templates:/etc/nginx/templates # template
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/nginx/ssl
+    
+  odoo:
     image: odoo:15.0
-    container_name: odoo_15
+    container_name: odoo
     depends_on:
       - db
 
@@ -15,8 +34,9 @@ services:
     #Locally we are going to access it via localhost:9000
 
     ports:
-      - "9000:8069"
-      - "80:8069"
+      # - "9000:8069"
+      # - "80:8069" # without nginx
+      - "8069:8069" # with nginx
 
     restart: always
     
