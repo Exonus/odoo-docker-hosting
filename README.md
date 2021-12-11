@@ -71,7 +71,7 @@ services:
 ```bash
 /src-$ cd odoo-docker-hosting
 ```
-> > * executer le fichier ```docker-compose.yml```
+> > * executer le fichier ```docker-compose.yml``` en background ```-d```
 ```bash
 /src/odoo-docker-hosting-$ docker-compose up -d
 ```
@@ -82,22 +82,26 @@ services:
 
 
 ## 2. Restorer une databse Odoo dans un conteneur
-> ### 1. Creer un user ```postgres``` 
+> ### 1. executer le fichier ```docker-compose.yml``` en background ```-d```
 ```bash
--$ docker exec -i postgres_14 createuser -U bn_odoo postgres --superuser
+/src/odoo-docker-hosting-$ docker-compose up -d
+```
+> ### 2. Creer un superuser ```postgres``` 
+```bash
+/src/odoo-docker-hosting-$ docker exec -i postgres_14 createuser -U bn_odoo postgres --superuser
 ```
 
-> ### 2. Creer database ```bitnami_odoo```
+> ### 3. Creer la database ```bitnami_odoo```
 ```bash
--$ docker exec -i postgres_14 createdb -U bn_odoo bitnami_odoo
+/src/odoo-docker-hosting-$ docker exec -i postgres_14 createdb -U bn_odoo bitnami_odoo
 ```
 
-> ### 3. Restorer la database ```bitnami_odoo```
+> ### 4. Restorer la database ```bitnami_odoo```
 ```bash
--$ docker exec -i postgres_14 psql -U bn_odoo bitnami_odoo < ../database-backup/bitnami_odoo.pgsql
+/src/odoo-docker-hosting-$ docker exec -i postgres_14 psql -U bn_odoo bitnami_odoo < ../database-backup/bitnami_odoo.pgsql
 ```
 
-> ### 4. Modifier le docker-compose pour utiliser la database ```bitnami_odoo```
+> ### 5. Modifier le docker-compose pour utiliser la database ```bitnami_odoo``` restaurée
 ```yaml
 version: '3.1'
 services:
@@ -110,8 +114,8 @@ services:
     command: '-u all -d bitnami_odoo'
 ```
 
-> ### 5. Run Odoo with database ```bitnami_odoo```
+> ### 6. executer le fichier ```docker-compose.yml``` en background ```-d```
 ```bash
--$ docker-compose up -d
+/src/odoo-docker-hosting-$ docker-compose up -d
 ```
 
