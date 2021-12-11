@@ -18,14 +18,20 @@
 -$ cd src
 ```
 > > * Odoo community addons
+
+> > Ce dossier contient les addons community qui seront copiés dans le dossier ```/mnt/extra-addons``` dans le conteneur odoo
 ```bash
 /src-$ git clone git@github.com:exonus/community-addons.git
 ```
 > > * Exonus Databse Backup
+> > Ce dossier contient les ```databases posgres``` exportées (sur l'instance ```bitnami``` qui tournait sur Azure)
+> 
 ```bash
 /src-$ git clone git@github.com:exonus/database-backup.git
 ```
-> > * Odoo Hocker Hosting
+> > * Odoo Docker Hosting
+> > Ce dossier contient le projet ```docker-compose``` pour la construction des services ```Odoo``` et ```Postgres``` 
+
 ```bash
 /src-$ git clone git@github.com:exonus/odoo-docker-hosting.git
 ```
@@ -37,8 +43,29 @@
 │   ├── odoo-docker-hosting
 
 ```
+> ### 6. Les configurations pour une bonne éxécution
 
-> ### 6. Demarrer les services ```odoo``` et ```postgres```
+```yaml
+version: '3.1'
+services:
+  web:
+    image: ...
+    container_name: ...
+
+    ...
+
+    # directives
+    deploy:
+        resources:
+            limits:
+                cpus: '0.50'    # le maximum utilisable par core (50%)
+                memory: 2048M   # le maximum utilisable dans la Ram (2Go)
+            reservations:
+                cpus: '0.25'    # Le minimum dedié par core (25%)
+                memory: 512M    # Le minumum dedi2 dans la Ram (512Mo)
+```
+
+> ### 7. Demarrer les services ```odoo``` et ```postgres```
 
 > > * Se deplacer dans le dossier ```odoo-docker-hosting```
 ```bash

@@ -16,7 +16,6 @@ services:
 
     ports:
       - "9000:8069"
-      # - "8080:8069"
       - "80:8069"
 
     restart: always
@@ -38,7 +37,7 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      - /root/src/community-addons:/mnt/extra-addons
+      - ../community-addons:/mnt/extra-addons
       # - ./addons:/mnt/extra-addons
       # - ./enterprise:/mnt/enterprise
 
