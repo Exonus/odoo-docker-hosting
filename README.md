@@ -43,7 +43,7 @@
 │   ├── odoo-docker-hosting
 
 ```
-> ### 6. Les configurations pour une bonne éxécution
+> ### 6. Les configurations CPU-RAM pour une bonne éxécution
 
 ```yaml
 version: '3.1'
@@ -58,8 +58,8 @@ services:
     deploy:
         resources:
             limits:
-                cpus: '0.50'    # le maximum utilisable par core (50%)
-                memory: 2048M   # le maximum utilisable dans la Ram (2Go)
+                cpus: '0.50'    # Le maximum utilisable par core (50%)
+                memory: 2048M   # Le maximum utilisable dans la Ram (2Go)
             reservations:
                 cpus: '0.25'    # Le minimum dedié par core (25%)
                 memory: 512M    # Le minumum dedi2 dans la Ram (512Mo)
