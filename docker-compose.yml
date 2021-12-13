@@ -2,7 +2,7 @@ version: '3.1'
 services:
   # Information needed set up an odoo web
   # application container.
-  web-server:
+  nginx:
     image: nginx
     container_name: nginx
     depends_on:
