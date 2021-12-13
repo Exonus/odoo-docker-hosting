@@ -106,7 +106,7 @@ services:
   
   db:
     image: postgres:14
-    container_name: postgres_14
+    container_name: postgres
     ports:
       - "5432:5432"
     
