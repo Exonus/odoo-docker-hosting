@@ -21,6 +21,8 @@ services:
       - ./data/nginx/conf:/etc/nginx/conf.d
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
+    
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 
 
       # - ./certbot/conf:/etc/nginx/ssl # content ./certbot/conf/live/exonus.tech
@@ -32,6 +34,7 @@ services:
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
     # command: certonly --webroot --webroot-path=/var/www/html --email nathanbangwa@exonus.tech --agree-tos --no-eff-email -d exonus.tech -d www.exonus.tech
     # volumes:
