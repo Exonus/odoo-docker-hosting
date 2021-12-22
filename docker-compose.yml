@@ -2,11 +2,11 @@ version: '3.1'
 services:
   # Information needed set up an odoo web
   # application container.
-  odoo:
+  odoo_bitnami:
     image: odoo
     container_name: odoo_bitnami
     depends_on:
-      - db
+      - db_bitnami
 
     # Port Mapping
     #We need to map the port on the host machine(left side) to the
@@ -65,11 +65,12 @@ services:
     # All of the information needed to start up a Postgresql
     # container.
   
-  db:
+  db_bitnami:
     image: postgres
     container_name: postgres_bitnami
     ports:
-      - "5432:5432"
+      # - "5432:5432"
+      - "5000:5432"
     
     restart: always
 
