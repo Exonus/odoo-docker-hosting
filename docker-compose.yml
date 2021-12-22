@@ -22,9 +22,9 @@ services:
 
     restart: always
     
-    # command: '-u all -d exonus'
+    command: '-u all -d exonus'
     #command: '-u all -d rd-demo'
-    command: '-u all -d bitnami_odoo'
+    # command: '-u all -d bitnami_odoo'
 
     # Data Volumes
     # --------
