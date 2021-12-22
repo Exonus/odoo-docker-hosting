@@ -2,9 +2,9 @@ version: '3.1'
 services:
   # Information needed set up an odoo web
   # application container.
-  web:
+  odoo:
     image: odoo
-    container_name: odoo_15
+    container_name: odoo
     depends_on:
       - db
 
@@ -67,7 +67,7 @@ services:
   
   db:
     image: postgres
-    container_name: postgres_14
+    container_name: postgres
     ports:
       - "5432:5432"
     
