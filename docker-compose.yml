@@ -4,7 +4,7 @@ services:
   # application container.
   odoo:
     image: odoo
-    container_name: odoo
+    container_name: odoo_bitnami
     depends_on:
       - db
 
@@ -15,8 +15,8 @@ services:
     #Locally we are going to access it via localhost:9000
 
     ports:
-      # - "9000:8069"
-      - "8069:8069"
+      - "9000:8069"
+      # - "8069:8069"
       # - "8080:8069"
       # - "80:8069"
 
@@ -37,7 +37,7 @@ services:
     #directory where Odoo will storesome attachments etc.
 
     volumes:
-      - odoo-web-data:/var/lib/odoo
+      - odoo-web-data-bitnami:/var/lib/odoo
       - ./config:/etc/odoo
       - /home/nathanbangwa/Documents/dev/devops/community-addons:/mnt/extra-addons
       # - ./addons:/mnt/extra-addons
@@ -67,7 +67,7 @@ services:
   
   db:
     image: postgres
-    container_name: postgres
+    container_name: postgres_bitnami
     ports:
       - "5432:5432"
     
@@ -84,8 +84,8 @@ services:
     #if we execute docker-compose down where all the data
     #in the layered file system will be lost
     volumes:
-      - odoo-db-data:/var/lib/postgresql/data
-      - odoo-db-pgdata:/var/lib/postgresql/data/pgdata
+      - odoo-db-data-bitnami:/var/lib/postgresql/data
+      - odoo-db-pgdata-bitnami:/var/lib/postgresql/data/pgdata
     
     # deployement 
     deploy:
@@ -99,7 +99,7 @@ services:
 
 # end services
 volumes:
-  odoo-web-data:
-  odoo-db-data:
-  odoo-db-pgdata:
+  odoo-web-data-bitnami:
+  odoo-db-data-bitnami:
+  odoo-db-pgdata-bitnami:
   
