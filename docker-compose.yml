@@ -22,7 +22,7 @@ services:
 
     restart: always
     
-    command: '-u all -d exonus'
+    command: '-u all -d exonus --limit-time-real=100000'
     #command: '-u all -d rd-demo'
     # command: '-u all -d bitnami_odoo'
 
