@@ -38,11 +38,15 @@ services:
       # - "80:8069" # without nginx
       - "8069:8069" # with nginx
 
+      # Long Polling
+      # https://www.oreilly.com/library/view/odoo-11-development/9781788477796/d3036256-f3fd-43c1-851f-ac7ef68f379b.xhtml
+      - "8072:8069" 
+
     restart: always
     
     # Proxy mode beacause odoo run behind of a reverse proxy server (Nginx)
     # workers to enable multiprocessing (2 is the number of cores processor)
-    command: '--workers=2 --proxy-mode -u all -d exonus'
+    command: '--workers=2 -u all -d exonus'
     #command: '-u all -d rd-demo'
     #command: '-u all -d bitnami_odoo'
 
