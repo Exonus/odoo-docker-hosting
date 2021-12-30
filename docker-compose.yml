@@ -40,7 +40,9 @@ services:
 
     restart: always
     
-    command: '-u all -d exonus'
+    # Proxy mode beacause odoo run behind of a reverse proxy server (Nginx)
+    # workers to enable multiprocessing (2 is the number of cores processor)
+    command: '--workers=2 --proxy-mode -u all -d exonus'
     #command: '-u all -d rd-demo'
     #command: '-u all -d bitnami_odoo'
 
