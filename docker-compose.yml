@@ -40,7 +40,7 @@ services:
 
       # Long Polling
       # https://www.oreilly.com/library/view/odoo-11-development/9781788477796/d3036256-f3fd-43c1-851f-ac7ef68f379b.xhtml
-      - "8072:8069" 
+      - "8072:8072" 
 
     restart: always
     
