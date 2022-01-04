@@ -2,9 +2,9 @@ version: '3.1'
 services:
   # Information needed set up an odoo web
   # application container.
-  web:
-    image: odoo:15.0
-    container_name: odoo_15
+  odoo:
+    image: odoo
+    container_name: odoo_localhost
     depends_on:
       - db
 
@@ -15,14 +15,16 @@ services:
     #Locally we are going to access it via localhost:9000
 
     ports:
-      - "9000:8069"
-      - "80:8069"
+      # - "9000:8069"
+      - "8070:8069" # stable localhost instance
+      # - "8080:8069"
+      # - "80:8069"
 
     restart: always
     
-    command: '-u all -d exonus'
+    command: '-u all -d localhost-stable --limit-time-real=100000'
     #command: '-u all -d rd-demo'
-    #command: '-u all -d bitnami_odoo'
+    # command: '-u all -d bitnami_odoo'
 
     # Data Volumes
     # --------
@@ -37,7 +39,7 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      - ../community-addons:/mnt/extra-addons
+      - /home/nathanbangwa/Documents/dev/devops/community-addons:/mnt/extra-addons
       # - ./addons:/mnt/extra-addons
       # - ./enterprise:/mnt/enterprise
 
@@ -46,28 +48,29 @@ services:
     #inside the postgres service
 
     environment:
-      - HOST=db
+      - HOST=db_localhost
       - USER=bn_odoo
       - PASSWORD=bn_odoo
     
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 2048M
-        reservations:
-          cpus: '0.25'
-          memory: 512M
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.50'
+    #       memory: 2048M
+    #     reservations:
+    #       cpus: '0.25'
+    #       memory: 512M
 
 
     # All of the information needed to start up a Postgresql
     # container.
   
   db:
-    image: postgres:14
-    container_name: postgres_14
+    image: postgres
+    container_name: postgres
     ports:
       - "5432:5432"
+      # - "5433:5433" # stable localhost odoo
     
     restart: always
 
@@ -86,14 +89,14 @@ services:
       - odoo-db-pgdata:/var/lib/postgresql/data/pgdata
     
     # deployement 
-    deploy:
-      resources:
-        limits:
-          cpus: '0.50'
-          memory: 1024M
-        reservations:
-          cpus: '0.25'
-          memory: 512M
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.50'
+    #       memory: 1024M
+    #     reservations:
+    #       cpus: '0.25'
+    #       memory: 512M
 
 # end services
 volumes:
