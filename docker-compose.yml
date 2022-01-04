@@ -63,7 +63,9 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      - ../community-addons:/mnt/extra-addons
+      - type: bind
+        source: ../community-addons
+        target: /mnt/extra-addons
       # - ./addons:/mnt/extra-addons
       # - ./enterprise:/mnt/enterprise
 
