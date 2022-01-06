@@ -1,25 +1,25 @@
-2022-01-06 12:10:40,900:DEBUG:certbot._internal.main:certbot version: 1.22.0
-2022-01-06 12:10:40,900:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/local/bin/certbot
-2022-01-06 12:10:40,900:DEBUG:certbot._internal.main:Arguments: ['--webroot', '--webroot-path=/var/www/html', '--email', 'nathanbangwa.exonus@gmail.com', '--agree-tos', '--no-eff-email', '-d', 'www.exonus.tech']
-2022-01-06 12:10:40,901:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
-2022-01-06 12:10:40,920:DEBUG:certbot._internal.log:Root logging level set at 30
-2022-01-06 12:10:40,921:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
-2022-01-06 12:10:40,926:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * webroot
+2022-01-06 12:10:49,800:DEBUG:certbot._internal.main:certbot version: 1.22.0
+2022-01-06 12:10:49,801:DEBUG:certbot._internal.main:Location of certbot entry point: /usr/local/bin/certbot
+2022-01-06 12:10:49,801:DEBUG:certbot._internal.main:Arguments: ['--webroot', '--webroot-path=/var/www/html', '--email', 'nathanbangwa.exonus@gmail.com', '--agree-tos', '--no-eff-email', '-d', 'www.exonus.tech']
+2022-01-06 12:10:49,801:DEBUG:certbot._internal.main:Discovered plugins: PluginsRegistry(PluginEntryPoint#manual,PluginEntryPoint#null,PluginEntryPoint#standalone,PluginEntryPoint#webroot)
+2022-01-06 12:10:49,821:DEBUG:certbot._internal.log:Root logging level set at 30
+2022-01-06 12:10:49,822:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer None
+2022-01-06 12:10:49,827:DEBUG:certbot._internal.plugins.selection:Single candidate plugin: * webroot
 Description: Place files in webroot directory
 Interfaces: Authenticator, Plugin
 Entry point: webroot = certbot._internal.plugins.webroot:Authenticator
-Initialized: <certbot._internal.plugins.webroot.Authenticator object at 0x7fd21943e850>
+Initialized: <certbot._internal.plugins.webroot.Authenticator object at 0x7fd63bd868e0>
 Prep: True
-2022-01-06 12:10:40,927:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot._internal.plugins.webroot.Authenticator object at 0x7fd21943e850> and installer None
-2022-01-06 12:10:40,927:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator webroot, Installer None
-2022-01-06 12:10:40,934:DEBUG:certbot._internal.main:Picked account: <Account(RegistrationResource(body=Registration(key=None, contact=(), agreement=None, status=None, terms_of_service_agreed=None, only_return_existing=None, external_account_binding=None), uri='https://acme-v02.api.letsencrypt.org/acme/acct/351799680', new_authzr_uri=None, terms_of_service=None), 5afbcd058320eea4ae33cba2dd0e1332, Meta(creation_dt=datetime.datetime(2022, 1, 6, 11, 54, 12, tzinfo=<UTC>), creation_host='251f704b2750', register_to_eff=None))>
-2022-01-06 12:10:40,935:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
-2022-01-06 12:10:40,937:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
-2022-01-06 12:10:41,330:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 200 658
-2022-01-06 12:10:41,331:DEBUG:acme.client:Received response:
+2022-01-06 12:10:49,827:DEBUG:certbot._internal.plugins.selection:Selected authenticator <certbot._internal.plugins.webroot.Authenticator object at 0x7fd63bd868e0> and installer None
+2022-01-06 12:10:49,827:INFO:certbot._internal.plugins.selection:Plugins selected: Authenticator webroot, Installer None
+2022-01-06 12:10:49,834:DEBUG:certbot._internal.main:Picked account: <Account(RegistrationResource(body=Registration(key=None, contact=(), agreement=None, status=None, terms_of_service_agreed=None, only_return_existing=None, external_account_binding=None), uri='https://acme-v02.api.letsencrypt.org/acme/acct/351799680', new_authzr_uri=None, terms_of_service=None), 5afbcd058320eea4ae33cba2dd0e1332, Meta(creation_dt=datetime.datetime(2022, 1, 6, 11, 54, 12, tzinfo=<UTC>), creation_host='251f704b2750', register_to_eff=None))>
+2022-01-06 12:10:49,835:DEBUG:acme.client:Sending GET request to https://acme-v02.api.letsencrypt.org/directory.
+2022-01-06 12:10:49,837:DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org:443
+2022-01-06 12:10:50,230:DEBUG:urllib3.connectionpool:https://acme-v02.api.letsencrypt.org:443 "GET /directory HTTP/1.1" 200 658
+2022-01-06 12:10:50,232:DEBUG:acme.client:Received response:
 HTTP 200
 Server: nginx
-Date: Thu, 06 Jan 2022 12:10:41 GMT
+Date: Thu, 06 Jan 2022 12:10:50 GMT
 Content-Type: application/json
 Content-Length: 658
 Connection: keep-alive
@@ -28,7 +28,7 @@ X-Frame-Options: DENY
 Strict-Transport-Security: max-age=604800
 
 {
-  "3otkTXIot-o": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417",
+  "dGLXL9w3wQA": "https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417",
   "keyChange": "https://acme-v02.api.letsencrypt.org/acme/key-change",
   "meta": {
     "caaIdentities": [
@@ -42,13 +42,13 @@ Strict-Transport-Security: max-age=604800
   "newOrder": "https://acme-v02.api.letsencrypt.org/acme/new-order",
   "revokeCert": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert"
 }
-2022-01-06 12:10:41,366:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer <certbot._internal.cli.cli_utils._Default object at 0x7fd2193c02b0>
-2022-01-06 12:10:41,377:DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): r3.o.lencr.org:80
-2022-01-06 12:10:41,526:DEBUG:urllib3.connectionpool:http://r3.o.lencr.org:80 "POST / HTTP/1.1" 200 503
-2022-01-06 12:10:41,527:DEBUG:certbot.ocsp:OCSP response for certificate /etc/letsencrypt/archive/www.exonus.tech/cert1.pem is signed by the certificate's issuer.
-2022-01-06 12:10:41,528:DEBUG:certbot.ocsp:OCSP certificate status for /etc/letsencrypt/archive/www.exonus.tech/cert1.pem is: OCSPCertStatus.GOOD
-2022-01-06 12:10:41,533:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
-2022-01-06 12:10:41,533:DEBUG:certbot._internal.log:Exiting abnormally:
+2022-01-06 12:10:50,281:DEBUG:certbot._internal.plugins.selection:Requested authenticator webroot and installer <certbot._internal.cli.cli_utils._Default object at 0x7fd63bd073a0>
+2022-01-06 12:10:50,295:DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): r3.o.lencr.org:80
+2022-01-06 12:10:50,320:DEBUG:urllib3.connectionpool:http://r3.o.lencr.org:80 "POST / HTTP/1.1" 200 503
+2022-01-06 12:10:50,321:DEBUG:certbot.ocsp:OCSP response for certificate /etc/letsencrypt/archive/www.exonus.tech/cert1.pem is signed by the certificate's issuer.
+2022-01-06 12:10:50,322:DEBUG:certbot.ocsp:OCSP certificate status for /etc/letsencrypt/archive/www.exonus.tech/cert1.pem is: OCSPCertStatus.GOOD
+2022-01-06 12:10:50,327:DEBUG:certbot._internal.display.obj:Notifying user: Certificate not yet due for renewal
+2022-01-06 12:10:50,328:DEBUG:certbot._internal.log:Exiting abnormally:
 Traceback (most recent call last):
   File "/usr/local/bin/certbot", line 33, in <module>
     sys.exit(load_entry_point('certbot', 'console_scripts', 'certbot')())
@@ -75,5 +75,5 @@ Traceback (most recent call last):
   File "/opt/certbot/src/certbot/certbot/_internal/display/util.py", line 67, in input_with_timeout
     raise EOFError
 EOFError
-2022-01-06 12:10:41,535:ERROR:certbot._internal.log:An unexpected error occurred:
-2022-01-06 12:10:41,535:ERROR:certbot._internal.log:EOFError
+2022-01-06 12:10:50,329:ERROR:certbot._internal.log:An unexpected error occurred:
+2022-01-06 12:10:50,329:ERROR:certbot._internal.log:EOFError
