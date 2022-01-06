@@ -25,7 +25,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/html --email nathanbangwa.exonus@gmail.com --agree-tos --no-eff-email -d www.exonus.tech -d www.exonus.tech
+    command: certonly --webroot --webroot-path=/var/www/html --email nathanbangwa.exonus@gmail.com --agree-tos --no-eff-email -d www.exonus.tech #-d www.exonus.tech
     volumes:
         - ./certbot/conf:/etc/letsencrypt
         - ./certbot/logs:/var/log/letsencrypt
