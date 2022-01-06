@@ -18,7 +18,7 @@ services:
     
     volumes:
       # - ./templates:/etc/nginx/templates # template
-      - ./nginx/conf:/etc/nginx/conf.d
+      - ./config/nginx/conf:/etc/nginx/conf.d
       - ./certbot/conf:/etc/nginx/ssl
       - ./certbot/data:/var/www/html
   
