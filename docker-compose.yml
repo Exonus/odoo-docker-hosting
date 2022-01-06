@@ -20,6 +20,17 @@ services:
       # - ./templates:/etc/nginx/templates # template
       - ./nginx/conf:/etc/nginx/conf.d
       - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/data:/var/www/html
+  
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    command: certonly --webroot --webroot-path=/var/www/html -- email benitomuvum@gmail.com --agree-tos --no-eff-email -d domain.com -d www.exonus.tech
+    volumes:
+        - ./certbot/conf:/etc/letsencrypt
+        - ./certbot/logs:/var/log/letsencrypt
+        - ./certbot/data:/var/www/html
+
     
   odoo:
     image: odoo:15.0
