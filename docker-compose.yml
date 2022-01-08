@@ -18,10 +18,10 @@ services:
     
     volumes:
       # acme challenge conf
-      #- ./config/nginx/conf_challenge:/etc/nginx/conf.d
+      - ./config/nginx/conf_challenge:/etc/nginx/conf.d
       
       # ssl config conf 
-      - ./config/nginx/conf:/etc/nginx/conf.d
+      #- ./config/nginx/conf:/etc/nginx/conf.d
       - ./certbot/conf:/etc/nginx/ssl
       - ./certbot/data:/var/www/html
   
@@ -60,7 +60,8 @@ services:
     
     # Proxy mode beacause odoo run behind of a reverse proxy server (Nginx)
     # workers to enable multiprocessing (2 is the number of cores processor)
-    command: '--workers=2 -u all -d exonus --limit-time-real=100000'
+    command: '-u all -d exonus --limit-time-real=100000'
+    #command: '--workers=2 -u all -d exonus --limit-time-real=100000'
     #command: '-u all -d rd-demo'
     #command: '-u all -d bitnami_odoo'
 
