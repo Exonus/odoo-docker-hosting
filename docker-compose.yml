@@ -17,8 +17,11 @@ services:
     #   - NGINX_PORT=80
     
     volumes:
-      # - ./templates:/etc/nginx/templates # template
-      - ./config/nginx/conf:/etc/nginx/conf.d
+      # acme challenge conf
+      - ./config/nginx/conf_challenge:/etc/nginx/conf.d
+      
+      # ssl config conf 
+      # - ./config/nginx/conf:/etc/nginx/conf.d
       - ./certbot/conf:/etc/nginx/ssl
       - ./certbot/data:/var/www/html
   
