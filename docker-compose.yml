@@ -18,10 +18,10 @@ services:
     
     volumes:
       # acme challenge conf
-      - ./config/nginx/conf_challenge:/etc/nginx/conf.d
+      #- ./config/nginx/conf_challenge:/etc/nginx/conf.d
       
       # ssl config conf 
-      # - ./config/nginx/conf:/etc/nginx/conf.d
+      - ./config/nginx/conf:/etc/nginx/conf.d
       - ./certbot/conf:/etc/nginx/ssl
       - ./certbot/data:/var/www/html
   
