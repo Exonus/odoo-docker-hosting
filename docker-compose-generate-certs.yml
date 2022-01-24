@@ -3,8 +3,8 @@ services:
   nginx:
     image: nginx
     container_name: nginx
-    depends_on:
-      - odoo
+    # depends_on:
+    #   - odoo
     ports:
       - "80:80" # Production
 
