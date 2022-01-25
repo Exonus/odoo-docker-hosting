@@ -1,0 +1,22 @@
+version: '3.2'
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    # depends_on:
+    #   - odoo
+    ports:
+      - "80:80" # Production
+
+    volumes:
+      - ./config/nginx/conf_challenge:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/nginx/ssl
+      - ./certbot/data:/var/www/html
+  
+  certbot:
+    image: certbot/certbot:latest
+    container_name: certbot
+    volumes:
+        - ./certbot/conf:/etc/letsencrypt
+        - ./certbot/logs:/var/log/letsencrypt
+        - ./certbot/data:/var/www/html

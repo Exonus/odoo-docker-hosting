@@ -1,88 +1,107 @@
 # Odoo Docker Hosting
 
-## 1. Hosting Odoo with Docker 
+## Déployer Odoo avec Docker 
 
-> ### 1. Se connecter sur le serveur en ```SSH```
-```bash 
--$ ssh <username>@192.162.70.149
-```
-> ### 2. Installer [docker](https://docs.docker.com/engine/install/ubuntu/)
-> ### 3. installer [docker-compose](https://docs.docker.com/compose/install/) 
-> ### 4. Creer un dossier ```src``` (endroit au choix)
-```bash
--$ mkdir src
-```
-> ### 5. Cloner les repos necessaires
-> > * Se deplacer dans le dossier
-```bash
--$ cd src
-```
-> > * Odoo community addons
+### Préparer les sources sur le serveur
+1. Se connecter sur le serveur en ```SSH```
 
-> > Ce dossier contient les addons community qui seront copiés dans le dossier ```/mnt/extra-addons``` dans le conteneur odoo
-```bash
-/src-$ git clone git@github.com:exonus/community-addons.git
-```
-> > * Exonus Databse Backup
-> > Ce dossier contient les ```databases posgres``` exportées (sur l'instance ```bitnami``` qui tournait sur Azure)
-> 
-```bash
-/src-$ git clone git@github.com:exonus/database-backup.git
-```
-> > * Odoo Docker Hosting
-> > Ce dossier contient le projet ```docker-compose``` pour la construction des services ```Odoo``` et ```Postgres``` 
+   ```bash 
+   $ ssh <username>@192.162.70.149
+   ```
+2. Installer [docker](https://docs.docker.com/engine/install/ubuntu/)
+3. installer [docker-compose](https://docs.docker.com/compose/install/) 
+4. Creer un dossier ```src``` (endroit au choix) et le visiter
+   ```bash
+   $ mkdir src
+   $ cd src
+   ```
+5. Cloner les répos git
+- Odoo community addons: Ce dossier contient les addons community qui seront copiés dans le dossier ```/mnt/extra-addons``` dans le conteneur odoo
+- Exonus Databse Backup: Ce dossier contient les ```databases posgres``` exportées (sur l'instance ```bitnami``` qui tournait sur Azure)
+- Odoo Docker Hosting: Ce dossier contient le projet ```docker-compose``` pour la construction des services ```Odoo``` et ```Postgres``` 
 
-```bash
-/src-$ git clone git@github.com:exonus/odoo-docker-hosting.git
-```
-> > * Vue du dossier ```src```
-```
-├── src
-│   ├── community-addons
-│   ├── database-backup
-│   ├── odoo-docker-hosting
+   ```bash
+   /src-$ git clone git@github.com:exonus/community-addons.git
+   /src-$ git clone git@github.com:exonus/database-backup.git
+   /src-$ git clone git@github.com:exonus/odoo-docker-hosting.git
+   ```
 
-```
-> ### 6. Les configurations CPU-RAM pour une bonne éxécution
+-  Vue du dossier ```src```
+   ```
+   ├── src
+   │   ├── community-addons
+   │   ├── database-backup
+   │   ├── odoo-docker-hosting
+   
+   ```
+6. Les configurations CPU-RAM pour une bonne éxécution
 
-```yaml
-version: '3.1'
-services:
-  web:
-    image: ...
-    container_name: ...
+   ```yaml
+   version: '3.1'
+   services:
+     web:
+       image: ...
+       container_name: ...
+   
+       ...
+   
+       # directives
+       deploy:
+           resources:
+               limits:
+                   cpus: '0.50'    # Le maximum utilisable par core (50%)
+                   memory: 2048M   # Le maximum utilisable dans la Ram (2Go)
+               reservations:
+                   cpus: '0.25'    # Le minimum dedié par core (25%)
+                   memory: 512M    # Le minumum dedi2 dans la Ram (512Mo)
+   ```
 
-    ...
+### Générer les certificats avec certbot
 
-    # directives
-    deploy:
-        resources:
-            limits:
-                cpus: '0.50'    # Le maximum utilisable par core (50%)
-                memory: 2048M   # Le maximum utilisable dans la Ram (2Go)
-            reservations:
-                cpus: '0.25'    # Le minimum dedié par core (25%)
-                memory: 512M    # Le minumum dedi2 dans la Ram (512Mo)
-```
+Depuis le répertoire `src/odoo-docker-hosting`, démarer `nginx` en vue de l'appel `certbot`: 
 
-> ### 7. Demarrer les services ```odoo``` et ```postgres```
+    ```
+    docker-compose -f docker-compose-generate-certs.yml up -d
+    ```
 
-> > * Se deplacer dans le dossier ```odoo-docker-hosting```
-```bash
-/src-$ cd odoo-docker-hosting
-```
-> > * executer le fichier ```docker-compose.yml``` en background ```-d```
-```bash
-/src/odoo-docker-hosting-$ docker-compose up -d
-```
+Puis, une fois que nginx roule, executer la commande suivante afin de tester la génération du certificat :
 
-> ### 8. Voir le resultat
-> > * En local [localhost](http://localhost:80)
-> > * En ligne [www.exonus.tech](http://www.exonus.tech/)
+    ```
+    docker-compose -f docker-compose-generate-certs.yml run --rm  certbot certonly --webroot --webroot-path /var/www/html/ --email nathanbangwa.exonus@gmail.com --agree-tos --no-eff-email --dry-run -d exonus.tech -d www.exonus.tech
+    ```
+Si tout est bon, on obtien un message du genre : 
+
+    ```
+    Simulating a certificate request for exonus.tech 
+    The dry run was successful.
+    ```
+Alors on peut procéder à la génération du certificat (sans le `--dry-run`)
+
+    ```
+    docker-compose -f docker-compose-generate-certs.yml run --rm  certbot certonly --webroot --webroot-path /var/www/html/ --email nathanbangwa.exonus@gmail.com --agree-tos --no-eff-email -d exonus.tech -d www.exonus.tech
+    ```
+Une fois les certificats générés :
+
+    ```
+    docker-compose -f docker-compose-generate-certs.yml down
+    ```
+à partir d'ici, le fichier docker-compose `docker-compose-generate-certs.yml` ne sera plus utilisé (sauf pour effectuer le renouvellement des certificats).
+
+### Demarrer les services ```odoo``` et ```postgres```
+
+Se deplacer dans le dossier ```src/odoo-docker-hosting``` et executer le fichier ```docker-compose.yml``` en background ```-d```
+   ```bash
+   /src-$ cd odoo-docker-hosting
+   /src/odoo-docker-hosting-$ docker-compose up -d
+   ```
+
+Voir le resultat
+   - En local [localhost](http://localhost:80)
+   - En ligne [www.exonus.tech](http://www.exonus.tech/)
 
 
-## 2. Restorer une databse Odoo dans un conteneur
-> ### 1. executer le fichier ```docker-compose.yml``` en background ```-d```
+## Restorer une databse Odoo dans un conteneur
+Executer `docker-compose` en background ```-d```
 ```bash
 /src/odoo-docker-hosting-$ docker-compose up -d
 ```
@@ -118,4 +137,3 @@ services:
 ```bash
 /src/odoo-docker-hosting-$ docker-compose up -d
 ```
-
