@@ -22,6 +22,8 @@ services:
 
     restart: always
     
+    # command: '-u all -d hotel --limit-time-real=100000'
+    # command: '-u all -d exonuschool --limit-time-real=100000'
     command: '-u all -d localhost-stable --limit-time-real=100000'
     #command: '-u all -d rd-demo'
     # command: '-u all -d bitnami_odoo'
