@@ -12,7 +12,8 @@ services:
       - 443:443
 
     volumes:
-      - ./config/nginx/conf:/etc/nginx/conf.d
+      # - ./config/nginx/conf:/etc/nginx/conf.d
+      - ./config/nginx/conf_challenge:/etc/nginx/conf.d
       - ./certbot/conf:/etc/nginx/ssl
       - ./certbot/data:/var/www/html
   
