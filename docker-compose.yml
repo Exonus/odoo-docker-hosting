@@ -31,8 +31,8 @@ services:
 
     ports:
       # - "9000:8069"
-      # - "80:8069" # without nginx
-      - "8069:8069" # with nginx
+      - "80:8069" # without nginx
+      # - "8069:8069" # with nginx
 
       # Long Polling
       # https://www.oreilly.com/library/view/odoo-11-development/9781788477796/d3036256-f3fd-43c1-851f-ac7ef68f379b.xhtml
